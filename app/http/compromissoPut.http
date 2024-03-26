@@ -1,0 +1,10 @@
+PUT https://8080-marcelozang-apiatividad-trlfe8z1lyu.ws-us110.gitpod.io/compromisso/1
+Content-Type: application/json
+
+{
+    "descricao": "Natação",
+    "dataInicio": "29/03/2024",
+    "dataFim": "29/03/2024",
+    "horaInicio": "8:00",
+    "horaFim": "18:00"
+}
