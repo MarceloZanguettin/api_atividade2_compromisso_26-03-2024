@@ -30,19 +30,37 @@ public class TarefaController {
 
   @PostMapping("/tarefa")
   public Tarefa postTarefa(@RequestBody Tarefa tarefa) {
+    if(tarefa.getDescricao() == null) {
+      throw new ResponseStatusException(
+        HttpStatus.BAD_REQUEST, "O valor do campo 'descrição' não pode ser nulo"
+      );
+    }
     return tarefaRepo.save(tarefa);
   }
 
   @GetMapping("/tarefa/{id}")
   public Tarefa getTarefa(@PathVariable Long id) {
-    return tarefaRepo.findById(id).get();
+    Optional<Tarefa> resultado = tarefaRepo.findById(id);
+      if(resultado.isEmpty()) {
+        throw new ResponseStatusException(
+          HttpStatus.NOT_FOUND, "Tarefa não encontrada!"
+        );
+      }
+    return resultado.get();
   }
 
   @PutMapping("/tarefa/{id}")
   public Tarefa putTarefa(@RequestBody Tarefa tarefa, @PathVariable Long id) {
     Optional<Tarefa> resposta = tarefaRepo.findById(id);
     if (resposta.isEmpty()) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Tarefa não encontrada!"
+        );
+    }
+    if(tarefa.getDescricao() == null) {
+      throw new ResponseStatusException(
+        HttpStatus.BAD_REQUEST, "O valor do campo 'descrição' não pode ser nulo"
+      );
     }
     resposta.get().setDescricao(tarefa.getDescricao());
     resposta.get().setConcluido(tarefa.isConcluido());
@@ -65,7 +83,9 @@ public class TarefaController {
     if (tarefaRepo.existsById(id)) {
       tarefaRepo.deleteById(id);
     } else {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Tarefa não encontrada!"
+        );
     }
   }
 
