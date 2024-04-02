@@ -1,0 +1,8 @@
+POST https://8080-marcelozang-apiatividad-o5zc2pfijam.ws-us110.gitpod.io/compromisso
+Content-Type: application/json
+
+{
+    "descricao": "Exemplo 2",
+    "dataHoraInicio": "29/03/2024 08:00:00",
+    "dataHoraFim": "29/03/2024 19:00:00"
+}

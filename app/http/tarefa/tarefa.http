@@ -1,0 +1,7 @@
+POST https://8080-marcelozang-apiatividad-o5zc2pfijam.ws-us110.gitpod.io/tarefa
+Content-Type: application/json
+
+{
+    "descricao": "Exemplo 6",
+    "concluido": true
+}

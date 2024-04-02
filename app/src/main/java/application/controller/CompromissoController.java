@@ -37,21 +37,23 @@ public class CompromissoController {
     return compromissoRepo.findById(id).get();
   }
 
-  @PutMapping("/compromisso/{id}")
-  public Compromisso putCompromisso(@RequestBody Compromisso compromisso, @PathVariable Long id) {
-    Optional<Compromisso> resposta = compromissoRepo.findById(id);
-    if (resposta.isEmpty()) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-    }
+   @PutMapping("/compromisso/{id}")
+   public Compromisso putCompromisso(@RequestBody Compromisso compromisso, @PathVariable Long id) {
+     Optional<Compromisso> resposta = compromissoRepo.findById(id);
+     if (resposta.isEmpty()) {
+       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+     }
 
-    resposta.get().setDescricao(compromisso.getDescricao());
-    resposta.get().setDataInicio(compromisso.getDataInicio());
-    resposta.get().setDataFim(compromisso.getDataFim());
-    resposta.get().setHoraInicio(compromisso.getHoraInicio());
-    resposta.get().setHoraFim(compromisso.getHoraFim());
+     resposta.get().setDescricao(compromisso.getDescricao());
+     resposta.get().setDataHoraInicio(compromisso.getDataHoraInicio());
+     resposta.get().setDataHoraFim(compromisso.getDataHoraFim());
+    // resposta.get().setDataInicio(compromisso.getDataInicio());
+    // resposta.get().setDataFim(compromisso.getDataFim());
+    // resposta.get().setHoraInicio(compromisso.getHoraInicio());
+    // resposta.get().setHoraFim(compromisso.getHoraFim());
 
-    return compromissoRepo.save(resposta.get());
-  }
+     return compromissoRepo.save(resposta.get());
+   }
 
   @DeleteMapping("/compromisso/{id}")
   public void deleteCompromisso(@PathVariable Long id) {

@@ -1,0 +1,7 @@
+PUT https://8080-marcelozang-apiatividad-o5zc2pfijam.ws-us110.gitpod.io/tarefa/1
+Content-Type: application/json
+
+{
+    "descricao": "Natação",
+    "concluido": true
+}
